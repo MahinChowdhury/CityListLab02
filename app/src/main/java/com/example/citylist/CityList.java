@@ -27,9 +27,29 @@ public class CityList {
      * @return
      *      Return the sorted list of cities
      */
-    public List<City> getCities() {
+    public List<City> getCities(boolean flag) {
         List<City> cityList = cities;
-        Collections.sort(cityList);
+
+        if(flag) {
+            //Sort on default
+            Collections.sort(cityList);
+        }
+        else{
+            //Sort by province name
+            Collections.sort(cityList,new sortCity());
+        }
         return cityList;
+    }
+    //Function to delete a city
+    public void delete(City city){
+        if(!cities.contains(city)){
+            throw new IllegalArgumentException();
+        }
+        cities.remove(city);
+    }
+
+    //Get count of cities.
+    public int count(){
+        return cities.size();
     }
 }
